@@ -10,7 +10,7 @@ namespace DevicesManager;
 public class EmbeddedDevice : Device
 {
     private string _ipAddress;
-    private bool _isConnected = false;
+    public bool IsConnected = false;
 
     /// <summary>
     /// Gets or sets the network name of the embedded device.
@@ -52,7 +52,7 @@ public class EmbeddedDevice : Device
     {
         if (CheckId(id))
         {
-            throw new ArgumentException("Invalid ID value. Required format: E-1", id);
+            throw new ArgumentException("Invalid ID value. Required format: E-1", nameof(id));
         }
 
         IpAddress = ipAddress;
@@ -73,7 +73,7 @@ public class EmbeddedDevice : Device
     /// </summary>
     public override void TurnOff()
     {
-        _isConnected = false;
+        IsConnected = false;
         base.TurnOff();
     }
 
@@ -95,7 +95,7 @@ public class EmbeddedDevice : Device
     {
         if (NetworkName.Contains("MD Ltd."))
         {
-            _isConnected = true;
+            IsConnected = true;
         }
         else
         {
@@ -108,5 +108,5 @@ public class EmbeddedDevice : Device
     /// </summary>
     /// <param name="id">The device ID to check.</param>
     /// <returns>True if the ID format is valid; otherwise, false.</returns>
-    private bool CheckId(string id) => id.Contains("E-");
+    private bool CheckId(string id) => !id.StartsWith("E-");
 }

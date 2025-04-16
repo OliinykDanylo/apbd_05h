@@ -9,7 +9,7 @@ namespace DevicesManager;
         /// Adds a new device to the device collection.
         /// </summary>
         /// <param name="newDevice">The device to be added.</param>
-        void AddDevice(Device newDevice);
+        void Post(Device newDevice);
 
         /// <summary>
         /// Edits an existing device in the device collection.
@@ -21,7 +21,7 @@ namespace DevicesManager;
         /// Removes a device from the device collection by its ID.
         /// </summary>
         /// <param name="deviceId">The ID of the device to be removed.</param>
-        void RemoveDeviceById(string deviceId);
+        void DeleteDevice(string deviceId);
 
         /// <summary>
         /// Turns on the device with the specified ID.
@@ -46,7 +46,7 @@ namespace DevicesManager;
         /// Gets the list of all devices in the device collection.
         /// </summary>
         /// <returns>A list of all devices.</returns>
-        List<Device> GetDevices();
+        List<Device> GetAllDevices();
 
         /// <summary>
         /// Saves the current list of devices to the specified file path.

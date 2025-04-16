@@ -4,7 +4,7 @@ using DevicesManager;
     /// Represents a smartwatch with a battery level and power state.
     /// Implements the <see cref="IPowerNotifier"/> interface to notify when the battery is low.
     /// </summary>
-    public class Smartwatch : Device, IPowerNotifier
+    public class SmartWatch : Device, IPowerNotifier
     {
         private int _batteryLevel;
 
@@ -41,18 +41,18 @@ using DevicesManager;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Smartwatch"/> class.
+        /// Initializes a new instance of the <see cref="SmartWatch"/> class.
         /// </summary>
         /// <param name="id">The unique identifier for the smartwatch.</param>
         /// <param name="name">The name of the smartwatch.</param>
         /// <param name="isEnabled">Indicates whether the smartwatch is enabled or not.</param>
         /// <param name="batteryLevel">The initial battery level of the smartwatch.</param>
         /// <exception cref="ArgumentException">Thrown if the ID format is invalid.</exception>
-        public Smartwatch(string id, string name, bool isEnabled, int batteryLevel) : base(id, name, isEnabled)
+        public SmartWatch(string id, string name, bool isEnabled, int batteryLevel) : base(id, name, isEnabled)
         {
             if (CheckId(id))
             {
-                throw new ArgumentException("Invalid ID value. Required format: SW-1", id);
+                throw new ArgumentException("Invalid ID value. Required format: SW-1", nameof(id));
             }
             BatteryLevel = batteryLevel;
         }
@@ -100,5 +100,5 @@ using DevicesManager;
         /// </summary>
         /// <param name="id">The ID to check.</param>
         /// <returns>True if the ID contains the "SW-" prefix, otherwise false.</returns>
-        private bool CheckId(string id) => id.Contains("SW-");
+        private bool CheckId(string id) => !id.StartsWith("SW-");
     }

@@ -18,14 +18,14 @@ using DevicesManager;
         /// <param name="isEnabled">Indicates whether the personal computer is enabled or not.</param>
         /// <param name="operatingSystem">The operating system of the personal computer, or null if none.</param>
         /// <exception cref="ArgumentException">Thrown if the ID format is invalid.</exception>
-        public PersonalComputer(string id, string name, bool isEnabled, string? operatingSystem) 
+        public PersonalComputer(string id, string name, bool isEnabled, string? operatingSystem)
             : base(id, name, isEnabled)
         {
-            if (!CheckId(id))
+            if (CheckId(id))
             {
-                throw new ArgumentException("Invalid ID value. Required format: P-1", id);
+                throw new ArgumentException("Invalid ID value. Required format: P-1", nameof(id));
             }
-            
+
             OperatingSystem = operatingSystem;
         }
 
@@ -59,5 +59,5 @@ using DevicesManager;
         /// </summary>
         /// <param name="id">The ID to check.</param>
         /// <returns>True if the ID contains the "P-" prefix, otherwise false.</returns>
-        private bool CheckId(string id) => id.Contains("P-");
+        private bool CheckId(string id) => !id.StartsWith("P-");
     }

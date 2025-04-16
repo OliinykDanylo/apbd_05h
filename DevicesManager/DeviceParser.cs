@@ -52,11 +52,11 @@ public class DeviceParser : IDeviceParser
     }
 
     /// <summary>
-    /// Parses a line representing a <see cref="Smartwatch"/>.
+    /// Parses a line representing a <see cref="SmartWatch"/>.
     /// </summary>
     /// <param name="line">The line of data representing a smartwatch.</param>
     /// <param name="lineNumber">The line number in the input file.</param>
-    /// <returns>A <see cref="Smartwatch"/> object.</returns>
+    /// <returns>A <see cref="SmartWatch"/> object.</returns>
     /// <exception cref="ArgumentException">Thrown if the line is corrupted or does not match the expected format.</exception>
     private Device ParseSmartwatch(string line, int lineNumber)
     {
@@ -65,7 +65,7 @@ public class DeviceParser : IDeviceParser
         {
             throw new ArgumentException($"Line {lineNumber} is corrupted.");
         }
-        return new Smartwatch(parts[0], parts[1], bool.Parse(parts[2]), int.Parse(parts[3].TrimEnd('%')));
+        return new SmartWatch(parts[0], parts[1], bool.Parse(parts[2]), int.Parse(parts[3].TrimEnd('%')));
     }
 
     /// <summary>
